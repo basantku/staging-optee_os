@@ -94,4 +94,13 @@
 #define CFG_SEC_ELF_DDR_ADDR		UL(0x908ff000)
 #define CFG_SEC_ELF_DDR_SIZE		UL(0x1000)
 
+/*
+ * Camera-ICP (Imaging Control Processor). Nord has two independent ICP
+ * instances (PAS ID 33 / 50), unlike lemans's single Titan SS block.
+ */
+#define ICP0_BASE			UL(0x09a03000)
+#define ICP0_SIZE			UL(0x00001000)
+#define ICP1_BASE			UL(0x09a13000)
+#define ICP1_SIZE			UL(0x00001000)
+
 #endif /* TARGET_CONFIG_H */
