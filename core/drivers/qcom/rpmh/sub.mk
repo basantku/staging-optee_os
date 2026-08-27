@@ -11,5 +11,4 @@ srcs-y += rpmh_client.c
 # RPMH hardware abstraction layer
 srcs-y += rpmh_hal.c
 
-# Per-target rpmh_msgram_config.h (MSG_RAM_SECTION_SIZE)
 global-incdirs-y += $(PLATFORM_FLAVOR)
