@@ -11,14 +11,4 @@ srcs-y += rpmh_client.c
 # RPMH hardware abstraction layer
 srcs-y += rpmh_hal.c
 
-# TCS (Task Control Structure) management
-srcs-y += rpmh_tcs.c
-
-# Resource command tracking and management
-srcs-y += rpmh_resource_commands.c
-
-# DRV configuration
-srcs-y += rpmh_drv_config.c
-
-# Per-target rpmh_msgram_config.h (MSG_RAM_SECTION_SIZE)
 global-incdirs-y += $(PLATFORM_FLAVOR)
