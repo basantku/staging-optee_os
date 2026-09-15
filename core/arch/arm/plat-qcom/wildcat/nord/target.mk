@@ -4,6 +4,19 @@
 # to be same as number of cores.
 $(call force,CFG_TEE_CORE_NB_CORE,18)
 
+CFG_DRIVERS_CLK ?= y
+CFG_DRIVERS_QCOM_CLK ?= y
+
+ifneq ($(CFG_INSECURE),y)
+CFG_QCOM_QFPROM_FUSEPROV ?= y
+endif
+
+ifeq ($(CFG_QCOM_QFPROM_FUSEPROV),y)
+$(call force,CFG_QCOM_CMD_DB,y)
+$(call force,CFG_QCOM_RPMH_CLIENT,y)
+$(call force,CFG_QCOM_QFPROM,y)
+endif
+
 # DARE-TZ secure memory regions. DARE is another in-line
 # memory encryption IP similar to pIMEM but on wildcat arch
 # it is setup by TME root-of-trust, no specific driver needed
@@ -11,3 +24,14 @@ $(call force,CFG_TEE_CORE_NB_CORE,18)
 CFG_TZDRAM_START ?= 0xBC600000
 CFG_TEE_RAM_VA_SIZE ?= 0x00200000
 CFG_TA_RAM_VA_SIZE ?= 0x07800000
+
+CFG_QCOM_DIAG_LOG ?= $(CFG_TEE_CORE_DEBUG)
+
+CFG_QCOM_PAS_PTA ?= y
+
+ifeq ($(CFG_QCOM_PAS_PTA),y)
+CFG_QCOM_PAS_AUTH ?= n
+CFG_PAS_MD_SLOTS ?= 8
+CFG_RESERVED_VASPACE_SIZE ?= (64 * 1024 * 1024)
+CFG_IN_TREE_EARLY_TAS += qcom_pas/cff7d191-7ca0-4784-af13-48223b9a4fbe
+endif
