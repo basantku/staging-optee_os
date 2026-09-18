@@ -95,9 +95,11 @@
 #define FUSE_CONTROLLER_SW_RANGE4_SIZE	UL(0x00001000)
 
 #define DRAM0_BASE			UL(0x80000000)
-#define DRAM0_SIZE			UL(0x380000000)
-#define DRAM1_BASE			ULL(0x800000000)
-#define DRAM1_SIZE			ULL(0x800000000)
+#define DRAM0_SIZE			UL(0x80000000)
+#define DRAM1_BASE			ULL(0x880000000)
+#define DRAM1_SIZE			ULL(0x780000000)
+#define DRAM2_BASE			ULL(0x8800000000)
+#define DRAM2_SIZE			ULL(0x3800000000)
 
 /*
  * The cmd_db blob is placed in DDR at boot; its base is published as a word in
