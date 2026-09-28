@@ -224,7 +224,6 @@ static TEE_Result cdsp_enable_processor(paddr_t base)
 
 static TEE_Result cdsp_reset_processor(const struct cdsp_regs *r)
 {
-	#if 0
 	struct io_pa_va cdsp_io = { .pa = r->base };
 	vaddr_t v = io_pa_or_va(&cdsp_io, CDSP_0_SIZE);
 	struct io_pa_va aoss_io = { .pa = AOSS_CC_BASE };
@@ -284,8 +283,7 @@ static TEE_Result cdsp_reset_processor(const struct cdsp_regs *r)
 		     r->computess_restart_bit);
 	dsb();
 	udelay(200);
-     
-	#endif
+
 	return TEE_SUCCESS;
 }
 
@@ -407,7 +405,6 @@ static TEE_Result hpass_enable_processor_2(void)
 	return TEE_SUCCESS;
 }
 
-#if 0
 static TEE_Result hpass_noc_quiesce(vaddr_t tcsr, uint32_t qreqn_bit,
 				    uint32_t qaccept_bit, uint32_t qdeny_bit)
 {
@@ -445,11 +442,9 @@ retry:
 
 	return TEE_SUCCESS;
 }
-#endif
 
 static TEE_Result hpass_reset_processor(void)
 {
-	#if 0
 	struct io_pa_va cc_io = { .pa = HPASS_CC_BASE };
 	vaddr_t cc = io_pa_or_va(&cc_io, HPASS_CC_SIZE);
 	struct io_pa_va tcsr_io = { .pa = TCSR_MUTEX_BASE };
@@ -585,9 +580,7 @@ static TEE_Result hpass_reset_processor(void)
 	io_write32(h0 + HPASS_QDSP6SS_RET_CFG, 0);
 	io_write32(h1 + HPASS_QDSP6SS_RET_CFG, 0);
 	io_write32(h2 + HPASS_QDSP6SS_RET_CFG, 0);
-    
-	#endif 
-	
+
 	return TEE_SUCCESS;
 }
 
@@ -690,7 +683,6 @@ static TEE_Result soccp_enable_processor(void)
 
 static TEE_Result soccp_reset_processor(void)
 {
-	#if 0
 	struct io_pa_va csr_io = { .pa = SOCCP_CSR_BASE };
 	vaddr_t csr = io_pa_or_va(&csr_io, SOCCP_CSR_SIZE);
 	struct io_pa_va aoss_io = { .pa = AOSS_CC_BASE };
@@ -709,7 +701,7 @@ static TEE_Result soccp_reset_processor(void)
 		     SOCCP_RESTART_SS_RESTART_BIT);
 	io_clrbits32(aoss_cc + AOSS_CC_SOCCP_RESTART,
 		     SOCCP_RESTART_SS_RESTART_BIT);
-    #endif 
+
 	return TEE_SUCCESS;
 }
 
@@ -794,7 +786,6 @@ TEE_Result qcom_clock_enable_pas_processor(enum qcom_clk_group group)
 
 TEE_Result qcom_clock_pas_reset(enum qcom_clk_group group)
 {
-	
 	switch (group) {
 	case QCOM_CLKS_TURING:
 		return cdsp_reset_processor(&cdsp0_regs);
@@ -818,6 +809,6 @@ TEE_Result qcom_clock_pas_reset(enum qcom_clk_group group)
 	default:
 		return TEE_ERROR_NOT_SUPPORTED;
 	}
-	
+
 	return TEE_SUCCESS;
 }
