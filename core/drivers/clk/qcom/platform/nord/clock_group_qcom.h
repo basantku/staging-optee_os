@@ -493,6 +493,15 @@
 #define SOCCP_RCG_SRC_SEL				0x6
 #define SOCCP_RCG_SRC_DIV				0x1
 
+/* SOCCP RCG: source select = 0x6, source divider = 1 (runs at 300MHz). */
+#define SOCCP_RCG_SRC_SEL_VAL				0x6
+#define SOCCP_RCG_SRC_DIV_VAL				0x1
+
+/* AOSS_CC SOCCP restart (within AOSS_CC window, AOSS_CC_BASE). */
+#define AOSS_CC_SOCCP_RESTART				    0x7024
+#define AOSS_CC_SOCCP_CONFIG_RESTART			0x7050
+#define SOCCP_RESTART_SS_RESTART_BIT			BIT(0)
+
 /*
  * SOCCP subsystem restart, offsets within the AOSS_CC reset-control window.
  * SS_RESTART is bit 0 of both.
