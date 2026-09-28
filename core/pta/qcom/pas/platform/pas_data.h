@@ -10,6 +10,7 @@
 #include <drivers/clk_qcom.h>
 #include <mm/core_memprot.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #define PAS_ID_QDSP6		1
 #define PAS_ID_WPSS		6
@@ -27,6 +28,19 @@
 #define PAS_ID_SOCCP		51
 #define PAS_ID_CAMERA1		50
 
+/*
+ * Device Tree interface for remote processor management
+ */
+#define DTB_ID_QDSP6		36
+#define DTB_ID_TURING		37
+#define DTB_ID_HPASS0		DTB_ID_QDSP6
+#define DTB_ID_HPASS1		55
+#define DTB_ID_HPASS2		56
+#define DTB_ID_TURING1		59
+#define DTB_ID_TURING2		60
+#define DTB_ID_TURING3		61
+#define DTB_ID_SOCCP		65
+
 struct qcom_pas_data {
 	uint32_t pas_id;
 	struct io_pa_va base;
@@ -34,6 +48,7 @@ struct qcom_pas_data {
 	paddr_t fw_base;
 	size_t fw_size;
 	enum qcom_clk_group clk_group;
+	bool secure;
 };
 
 #endif /* _PAS_DATA_H_ */
